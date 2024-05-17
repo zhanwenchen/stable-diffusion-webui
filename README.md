@@ -1,6 +1,24 @@
 # Stable Diffusion web UI
 A web interface for Stable Diffusion, implemented using Gradio library.
 
+```bash
+git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
+pip install transformers diffusers invisible-watermark
+pip install git+https://github.com/crowsonkb/k-diffusion.git
+# Do not use conda for lightning
+pip install kornia invisible-watermark gradio lightning open_clip_torch einops omegaconf diskcache piexif pillow-avif-plugin tomesd blendmodes gradio==3.41.2 inflection
+git clone https://github.com/Stability-AI/generative-models.git repositories/generative-models
+git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui-assets.git repositories/stable-diffusion-webui-assets
+# Manually fixu pytorch_lightning...distributed to zero_rank import zero_rank_only
+# Manualy fix block is none in blocks.py.
+git clone https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0 models/Stable-diffusion/stable-diffusion-xl-refiner-1.0
+python webui.py
+
+# Install regional prompter (tag: manipulations)
+
+ln -sf /usr/lib/x86_64-linux-gnu/libstdc++.so.6 ${CONDA_PREFIX}/lib/libstdc++.so.6
+```
+
 ![](screenshot.png)
 
 ## Features
@@ -78,7 +96,7 @@ A web interface for Stable Diffusion, implemented using Gradio library.
 - Clip skip
 - Hypernetworks
 - Loras (same as Hypernetworks but more pretty)
-- A separate UI where you can choose, with preview, which embeddings, hypernetworks or Loras to add to your prompt 
+- A separate UI where you can choose, with preview, which embeddings, hypernetworks or Loras to add to your prompt
 - Can select to load a different VAE from settings screen
 - Estimated completion time in progress bar
 - API
@@ -122,7 +140,7 @@ Alternatively, use online services (like Google Colab):
 # Debian-based:
 sudo apt install wget git python3 python3-venv libgl1 libglib2.0-0
 # Red Hat-based:
-sudo dnf install wget git python3 gperftools-libs libglvnd-glx 
+sudo dnf install wget git python3 gperftools-libs libglvnd-glx
 # openSUSE-based:
 sudo zypper install wget git python3 libtcmalloc4 libglvnd
 # Arch-based:
